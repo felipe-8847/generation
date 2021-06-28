@@ -18,7 +18,7 @@ import org.generation.blogPessoal.model.Postagem;
 import org.generation.blogPessoal.repository.PostagemRepository;
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/postagem")
 @CrossOrigin("*")
 public class PostagemController {
 
@@ -56,7 +56,7 @@ public class PostagemController {
     }
    
     @DeleteMapping("/{id}")
-    public void deletbe (@PathVariable Long id) {
+    public void delete (@PathVariable Long id) {
     	repository.deleteById(id);
     }
 }
