@@ -1,6 +1,5 @@
 package com.minhalojadegames.jogos.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Produto {
@@ -25,8 +24,8 @@ public class Produto {
 	
 	private String descricao;
 	
-	@ManyToOne(cascade = CascadeType.REMOVE)
-	//@JsonIgnoreProperties({""})
+	@ManyToOne
+	@JsonIgnoreProperties({"adicionarProduto"})
 	private Categoria adicionar;
 
 

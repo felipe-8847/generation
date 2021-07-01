@@ -1,6 +1,5 @@
 package com.minhalojadegames.jogos.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Categoria {
@@ -24,8 +25,8 @@ public class Categoria {
 	private String descricao;
 	
 	@OneToMany(mappedBy = "adicionar")
-	//@JsonIgnoreProperties({""})
-	private List<Produto> adicionarProduto = new ArrayList<>();
+	@JsonIgnoreProperties({"adicionar"})
+	private List<Produto> adicionarProduto;
 	
 	
 	public Long getId_categoria() {
