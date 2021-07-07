@@ -18,14 +18,13 @@ import org.generation.blogPessoal.model.Postagem;
 import org.generation.blogPessoal.repository.PostagemRepository;
 
 @RestController
-@RequestMapping("/postagem")
-@CrossOrigin("*")
+@RequestMapping("/postagens")
 public class PostagemController {
 
 	@Autowired	
 	private PostagemRepository repository;
 
-    @GetMapping("/buscar")
+    @GetMapping
     public List<Postagem> buscar () {
         return repository.findAll();
     }
