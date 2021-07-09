@@ -36,6 +36,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter{
  	protected void configure(HttpSecurity http) throws Exception {
 		
  		http.authorizeRequests()
+ 		.antMatchers(HttpMethod.GET,"/usuario/todos").permitAll()
  		.antMatchers(HttpMethod.GET,"/tema").permitAll()
  		.antMatchers(HttpMethod.GET,"/postagens").permitAll()
  		.antMatchers(HttpMethod.GET,"/usuario").permitAll()
