@@ -22,15 +22,15 @@ class UsuarioRepositoryTest {
 	
 	@BeforeAll
 	void start() {
-		Usuario usuario = new Usuario("varg","VagnerBoaz", "134652");
+		Usuario usuario = new Usuario("VagnerBoaz", "134652");
 		if(repositorioU.findByUsuario(usuario.getUsuario())!=null)
 			repositorioU.save(usuario);
 		
-		usuario = new Usuario("lucas","LucasBoaz", "134652");
+		usuario = new Usuario("LucasBoaz", "134652");
 		if(repositorioU.findByUsuario(usuario.getUsuario())!=null)
 			repositorioU.save(usuario);
 		
-		usuario = new Usuario("marcelo","MarceloBoaz", "134652");
+		usuario = new Usuario("MarceloBoaz", "134652");
 		if(repositorioU.findByUsuario(usuario.getUsuario())!=null)
 			repositorioU.save(usuario);
 	}

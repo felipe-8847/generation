@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.generation.blogPessoal.model.Usuario;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +22,19 @@ class UsuarioControllerTest {
 	@Autowired
 	private TestRestTemplate testRestTemplate;
 	
+	private Usuario usuarioSalvar;
 	private Usuario usuario;
 	private Usuario usuarioAlterar;
 	
 	@BeforeAll
 	public void start() {
-		usuario = new Usuario("felipe", "FELIPE@teste", "123456");
-		usuarioAlterar = new Usuario("felipe1", "FELIPE1@teste", "112233");
+		usuarioSalvar = new Usuario("FELIPE","felipe@gmail", "123456");
+		usuario = new Usuario("FELIPE", "123456");
+		usuarioAlterar = new Usuario("FELIPE", "111111");
 	}
 
-	@Disabled
-	@Test
+	
+	//@Test
 	void deveSalvarUsuarioRetornaStatus201() {
 		
 		/*
@@ -41,16 +42,30 @@ class UsuarioControllerTest {
 		 * parâmentro do método exchange. (Enviando um objeto usuario via body)
 		 * 
 		 * */
-		HttpEntity<Usuario> request = new HttpEntity<Usuario>(usuario);
+		HttpEntity<Usuario> request = new HttpEntity<Usuario>(usuarioSalvar);
 		
 		ResponseEntity<Usuario> resposta = testRestTemplate.exchange("/usuario/salvar", HttpMethod.POST, request, Usuario.class);
 		assertEquals(HttpStatus.CREATED, resposta.getStatusCode());
 	}
 	
-	@Disabled
 	@Test
+	public void deveRealizarPostUsuario() {
+
+		
+		/*
+		 * Criando um objeto do tipo HttpEntity para enviar como terceiro
+		 * parâmentro do método exchange. (Enviando um objeto contato via body)
+		 * 
+		 * */
+		HttpEntity<Usuario> request = new HttpEntity<Usuario>(usuarioSalvar);
+
+		ResponseEntity<Usuario> resposta = testRestTemplate.exchange("/usuario/salvar", HttpMethod.POST, request, Usuario.class);
+		assertEquals(HttpStatus.CREATED, resposta.getStatusCode());
+	}
+	
+	//@Test
 	void deveRetornarListadeUsuarioRetornaStatus200() {
-		ResponseEntity<String> resposta = testRestTemplate.withBasicAuth("RafaelBoaz", "134652")
+		ResponseEntity<String> resposta = testRestTemplate.withBasicAuth("FELIPE", "134652")
 				.exchange("/usuario/todos", HttpMethod.GET, null, String.class);
 		assertEquals(HttpStatus.OK, resposta.getStatusCode());
 	}
@@ -66,8 +81,8 @@ class UsuarioControllerTest {
 		 * */
 		HttpEntity<Usuario> request = new HttpEntity<Usuario>(usuarioAlterar);
 		
-		ResponseEntity<Usuario> resposta = testRestTemplate.withBasicAuth("felipe1", "123456")
-				.exchange("/usuario/novo", HttpMethod.POST, request, Usuario.class);
+		ResponseEntity<Usuario> resposta = testRestTemplate.withBasicAuth("FELIPE","134652")
+				.exchange("/usuario/alterar", HttpMethod.PUT, request, Usuario.class);
 		assertEquals(HttpStatus.CREATED, resposta.getStatusCode());
 	}
 	

@@ -18,7 +18,14 @@ public class Usuario {
 
 	}
 
-	public Usuario( @NotNull String nome, @NotNull String usuario, @NotNull String senha) {
+	public Usuario(@NotNull String usuario, @NotNull String senha) {
+
+		this.usuario = usuario;
+		this.senha = senha;
+	}
+
+	public Usuario(@NotNull String nome, @NotNull String usuario, @NotNull String senha) {
+
 		this.nome = nome;
 		this.usuario = usuario;
 		this.senha = senha;
