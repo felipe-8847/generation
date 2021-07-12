@@ -8,20 +8,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 
 @Entity
 public class Tema {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	private String descricao;
-	
+
 	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("tema")
 	private List<Postagem> postagem;
@@ -49,6 +49,5 @@ public class Tema {
 	public void setPostagem(List<Postagem> postagem) {
 		this.postagem = postagem;
 	}
-	
-	
+
 }

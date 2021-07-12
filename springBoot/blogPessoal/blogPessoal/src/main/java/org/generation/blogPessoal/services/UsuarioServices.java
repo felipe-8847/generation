@@ -29,7 +29,7 @@ public class UsuarioServices {
 			return Optional.ofNullable(repository.save(usuario));
 		}
 	}
-	
+
 	public Optional<UserLoginDTO> logarUsuario(Optional<UserLoginDTO> usuarioLogin) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		Optional<Usuario> usuarioPresente = repository.findByUsuario(usuarioLogin.get().getUsuario());
