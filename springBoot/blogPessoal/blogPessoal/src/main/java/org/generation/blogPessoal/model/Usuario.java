@@ -30,7 +30,7 @@ public class Usuario {
 	@Size(min = 6, max = 100)
 	private String senha;
 
-	
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoDeUsuario tipo;
 
