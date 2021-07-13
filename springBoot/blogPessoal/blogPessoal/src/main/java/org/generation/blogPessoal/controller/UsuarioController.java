@@ -44,21 +44,21 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/novo")
-	public ResponseEntity<Usuario> novoUsuario(@RequestBody Usuario usuario) {
+	public ResponseEntity<Usuario> cadastrarNovoUsuario(@Valid @RequestBody Usuario usuario) {
 		return services.cadastrarUsuario(usuario)
 				.map(usuarioCadastrado -> ResponseEntity.status(201).body(usuarioCadastrado))
 				.orElse(ResponseEntity.status(400).build());
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<UserLoginDTO> autorizarUsuario(@RequestBody Optional<UserLoginDTO> usuarioLogin) {
+	public ResponseEntity<UserLoginDTO> autorizarELogarUsuario(@Valid @RequestBody Optional<UserLoginDTO> usuarioLogin) {
 		return services.logarUsuario(usuarioLogin)
 				.map(usuarioAutorizado -> ResponseEntity.status(202).body(usuarioAutorizado))
 				.orElse(ResponseEntity.status(401).build());
 	}
 
-	@PutMapping("/alterar")
-	public ResponseEntity<?> alterarUsuario(@Valid @RequestBody Usuario usuarioParaAtualizar) {
+	@PutMapping("/atualizar")
+	public ResponseEntity<Usuario> atualizarUsuario(@Valid @RequestBody Usuario usuarioParaAtualizar) {
 		return repository.findByUsuario(usuarioParaAtualizar.getUsuario()).map(usuarioExistente -> {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			String senhaCriptografada = encoder.encode(usuarioParaAtualizar.getSenha());

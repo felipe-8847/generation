@@ -19,18 +19,18 @@ public class Usuario {
 	private Long idUsuario;
 
 	@NotNull(message = "O nome não pode ser nulo!")
-	@Size(min = 6, max = 100)
+	@Size(min = 2, max = 100)
 	private String nome;
 
 	@NotNull(message = "O usuario não pode ser nulo")
 	@Size(min = 2, max = 200)
 	private String usuario;
 
-	@NotNull(message = "A senha não pode ser nula")
+	@NotNull(message = "A senha não pode ser nula e conter no minimo 6 digitos")
 	@Size(min = 6, max = 100)
 	private String senha;
 
-	@NotNull
+	
 	@Enumerated(EnumType.STRING)
 	private TipoDeUsuario tipo;
 
@@ -44,12 +44,11 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Usuario(@NotNull String nome, @NotNull String usuario, @NotNull String senha, @NotNull TipoDeUsuario tipo) {
+	public Usuario(@NotNull String nome, @NotNull String usuario, @NotNull String senha) {
 
 		this.nome = nome;
 		this.usuario = usuario;
 		this.senha = senha;
-		this.tipo = tipo;
 	}
 
 	public Long getIdUsuario() {

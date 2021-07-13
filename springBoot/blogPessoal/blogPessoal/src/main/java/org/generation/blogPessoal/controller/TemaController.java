@@ -23,69 +23,33 @@ public class TemaController {
 	@Autowired
 	private TemaRepository repository;
 
-	/**
-	 * Methodo que consulta todos os elementos
-	 * 
-	 * @param nome
-	 * @return tras todos os elementos encontrados 
-	 */
-
 	@GetMapping
-	public ResponseEntity<List<Tema>> getAll() {
+	public ResponseEntity<List<Tema>> buscarTodosOsTemas() {
 		return ResponseEntity.ok(repository.findAll());
 	}
 
-	/**
-	 * Consulta pelo id
-	 * 
-	 * @param nome
-	 * @return os dados ligados ao nome citado no parametro
-	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<Tema> getById(@PathVariable long id) {
+	public ResponseEntity<Tema> buscarPorId(@PathVariable long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 
-	/**
-	 * Consulta pelo nome
-	 * 
-	 * @param nome
-	 * @return os dados ligados ao nome citado no parametro
-	 */
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<Tema>> getByName(@PathVariable String nome) {
+	public ResponseEntity<List<Tema>> buscarPorNomeDoTema(@PathVariable String nome) {
 		return ResponseEntity.ok(repository.findAllByDescricaoContainingIgnoreCase(nome));
 	}
 
-	/**
-	 * Adiciona uma nova postagem ou tema
-	 * 
-	 * @param tema
-	 * @return salva a postagem
-	 */
 	@PostMapping
-	public ResponseEntity<Tema> post(@RequestBody Tema tema) {
+	public ResponseEntity<Tema> salvarUmTema(@RequestBody Tema tema) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(tema));
 	}
 
-	/**
-	 * Atualizar uma postategem ou tema
-	 * 
-	 * @param tema
-	 * @return salva o novo tema ou postagem pois tem ligação
-	 */
 	@PutMapping
-	public ResponseEntity<Tema> put(@RequestBody Tema tema) {
+	public ResponseEntity<Tema> atualizarUmTema(@RequestBody Tema tema) {
 		return ResponseEntity.ok(repository.save(tema));
 	}
 
-	/**
-	 * busca um elemento pelo id para ser deletado
-	 * 
-	 * @param id
-	 */
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id) {
+	public void deletarUmTema(@PathVariable long id) {
 		repository.deleteById(id);
 	}
 }

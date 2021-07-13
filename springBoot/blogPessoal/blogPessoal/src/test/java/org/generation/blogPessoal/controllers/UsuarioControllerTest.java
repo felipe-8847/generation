@@ -44,31 +44,10 @@ class UsuarioControllerTest {
 		 * */
 		HttpEntity<Usuario> request = new HttpEntity<Usuario>(usuarioSalvar);
 		
-		ResponseEntity<Usuario> resposta = testRestTemplate.exchange("/usuario/salvar", HttpMethod.POST, request, Usuario.class);
+		ResponseEntity<Usuario> resposta = testRestTemplate.exchange("/usuario/novo", HttpMethod.POST, request, Usuario.class);
 		assertEquals(HttpStatus.CREATED, resposta.getStatusCode());
 	}
 	
-	@Test
-	public void deveRealizarPostUsuario() {
-
-		
-		/*
-		 * Criando um objeto do tipo HttpEntity para enviar como terceiro
-		 * parâmentro do método exchange. (Enviando um objeto contato via body)
-		 * 
-		 * */
-		HttpEntity<Usuario> request = new HttpEntity<Usuario>(usuarioSalvar);
-
-		ResponseEntity<Usuario> resposta = testRestTemplate.exchange("/usuario/salvar", HttpMethod.POST, request, Usuario.class);
-		assertEquals(HttpStatus.CREATED, resposta.getStatusCode());
-	}
-	
-	//@Test
-	void deveRetornarListadeUsuarioRetornaStatus200() {
-		ResponseEntity<String> resposta = testRestTemplate.withBasicAuth("FELIPE", "134652")
-				.exchange("/usuario/todos", HttpMethod.GET, null, String.class);
-		assertEquals(HttpStatus.OK, resposta.getStatusCode());
-	}
 	
 	
 	//@Test
@@ -81,7 +60,7 @@ class UsuarioControllerTest {
 		 * */
 		HttpEntity<Usuario> request = new HttpEntity<Usuario>(usuarioAlterar);
 		
-		ResponseEntity<Usuario> resposta = testRestTemplate.withBasicAuth("FELIPE","134652")
+		ResponseEntity<Usuario> resposta = testRestTemplate.withBasicAuth("felipe@gmail","134652")
 				.exchange("/usuario/alterar", HttpMethod.PUT, request, Usuario.class);
 		assertEquals(HttpStatus.CREATED, resposta.getStatusCode());
 	}

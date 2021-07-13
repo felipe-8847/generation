@@ -26,6 +26,8 @@ public Usuario usuario;
 	private  ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 	Validator validator = factory.getValidator();
 	
+	
+	
 	@BeforeEach
 	public void start() {
 		usuario = new Usuario("felipe1", "FELIPE1@teste", "1234567");
